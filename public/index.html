@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Sorteo Oficial</title>
+  <link rel="stylesheet" href="estilos.css">
+</head>
+
+<body>
+  <div class="container">
+    <h1>Sorteo Oficial 2025</h1>
+    <p id="infoSorteo"></p>
+
+    
+    <form id="form">
+      <input id="nombre" placeholder="Nombre" required>
+      <input id="apellidos" placeholder="Apellidos" required>
+      <input id="email" type="email" placeholder="Correo electrónico" required>
+      <input id="telefono" placeholder="Teléfono" required>
+      <input id="nacimiento" type="date" required>
+
+      <label class="checkbox">
+        <input type="checkbox" id="acepto" required>
+        Acepto la política de protección de datos
+      </label>
+
+      <button type="submit">Apuntarse al sorteo</button>
+    </form>
+
+    <p id="mensaje"></p>
+
+    
+    <div id="resolver" style="display:none;">
+      <h2>Resolver sorteo</h2>
+      <input id="numGanadores" type="number" min="1" value="3">
+      <button id="btnResolver">Resolver</button>
+
+      <pre id="resultado"></pre>
+      <br>
+      <a href="/api/export">Descargar Excel de participantes</a>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+  <script src="resolver.js"></script>
+</body>
+</html>
