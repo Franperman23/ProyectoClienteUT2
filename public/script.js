@@ -1,4 +1,4 @@
-const fechaSorteo = new Date("2025-11-26T18:00:00Z");
+const fechaSorteo = new Date ("2025-11-26T18:00:00Z");
 document.getElementById("infoSorteo").innerText =
   "El sorteo se resolverá el: " + fechaSorteo.toLocaleString();
 
