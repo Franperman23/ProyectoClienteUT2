@@ -22,12 +22,11 @@ async function main() {
     console.log("MongoDB conectado correctamente");
 
     const db = client.db("sorteos");
-
     
     const Participantes = db.collection("participantes"); 
     const Ganadores = db.collection("ganadores");
 
-    // Insertar participante teniendo en cuenta los duplicados
+    // Insertar participante
     app.post("/api/participantes", async (req, res) => {
       try {
         const participante = req.body;
@@ -119,6 +118,52 @@ async function main() {
       } catch (err) {
         console.error("Error en GET /api/export:", err);
         res.status(500).json({ ok: false, error: err.message });
+      }
+    });
+
+    
+    app.post("/api/resolver", async (req, res) => {
+      try {
+        const num = parseInt(req.body.num) || NUM_GANADORES;
+
+        // Comprobar fecha del sorteo
+        if (new Date() < FECHA_SORTEO) {
+          return res.status(400).json({
+            error: "Aún no se puede resolver el sorteo. No ha llegado la fecha."
+          });
+        }
+
+        // Obtener participantes
+        const participantes = await Participantes.find().toArray();
+
+        if (participantes.length === 0) {
+          return res.status(400).json({ error: "No hay participantes" });
+        }
+
+        // Elegir ganadores aleatorios
+        const ganadores = [];
+        const usados = new Set();
+
+        while (ganadores.length < num && ganadores.length < participantes.length) {
+          const index = Math.floor(Math.random() * participantes.length);
+          if (!usados.has(index)) {
+            usados.add(index);
+            ganadores.push(participantes[index]);
+          }
+        }
+
+        // Guardar ganadores en DB
+        await Ganadores.deleteMany({});
+        await Ganadores.insertMany(ganadores);
+
+        res.json({
+          ok: true,
+          ganadores
+        });
+
+      } catch (err) {
+        console.error("Error en /api/resolver:", err);
+        res.status(500).json({ error: "Error interno del servidor" });
       }
     });
 
