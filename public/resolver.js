@@ -1,4 +1,4 @@
-const fechaLimite = new Date(Date.now() - 1000);
+const fechaLimite = new Date ("2025-11-26T18:00:00Z");
 
 function revisar() {
   const now = new Date();

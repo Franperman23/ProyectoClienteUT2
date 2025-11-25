@@ -1,5 +1,4 @@
-const fechaLimite = new Date(Date.now() - 1000);
-
+const fechaSorteo = new Date ("2025-11-26T18:00:00Z");
 document.getElementById("infoSorteo").innerText =
   "El sorteo se resolverá el: " + fechaSorteo.toLocaleString();
 
