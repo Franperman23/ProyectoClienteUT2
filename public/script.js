@@ -1,5 +1,5 @@
-const fechaSorteo = new Date ("2025-12-26T18:00:00Z");
-//const fechaSorteo = new Date(Date.now() - 1000); Para forzar la resolucion del sorteo
+//const fechaSorteo = new Date ("2025-12-26T18:00:00Z");
+const fechaSorteo = new Date(Date.now() - 1000); //Para forzar la resolucion del sorteo
 document.getElementById("infoSorteo").innerText =
   "El sorteo se resolverá el: " + fechaSorteo.toLocaleString();
 

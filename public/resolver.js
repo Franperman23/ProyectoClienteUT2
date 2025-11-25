@@ -1,5 +1,5 @@
-const fechaLimite = new Date ("2025-12-26T18:00:00Z");
-//const fechaLimite = new Date(Date.now() - 1000); Para forzar la resolucion del sorteo. En el .env cambiar: Fecha_Sorteo: 2000-01-01T00:00:00Z
+//const fechaLimite = new Date ("2025-12-26T18:00:00Z");
+const fechaLimite = new Date(Date.now() - 1000); //Para forzar la resolucion del sorteo. En el .env cambiar: Fecha_Sorteo: 2000-01-01T00:00:00Z
 
 function revisar() {
   const now = new Date();
